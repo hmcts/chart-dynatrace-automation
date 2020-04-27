@@ -24,9 +24,16 @@ spec:
           configMap:
             name: {{ template "hmcts.releasename.v1" . }}-bin
             defaultMode: 0755
+
       containers:
         - name: {{ template "hmcts.releasename.v1" . }}
           image: hmcts/curl
+          env:
+            - name: apiToken
+              valueFrom:
+                secretKeyRef:
+                  name: api-token
+                  key: apiToken
           volumeMounts:
             - name: container-init
               mountPath: /container.init

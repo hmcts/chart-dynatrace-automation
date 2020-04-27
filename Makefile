@@ -29,7 +29,7 @@ deploy:
 
 dry-run:
 	helm dependency update ${CHART} 
-	helm install ${CHART} --name ${RELEASE} --namespace ${NAMESPACE} -f ci-values.yaml -f ci-tests-values.yaml --dry-run --debug
+	helm install ${RELEASE} ${CHART} --namespace ${NAMESPACE} -f ci-values.yaml --dry-run --debug
 
 test:
 	helm test ${RELEASE}
